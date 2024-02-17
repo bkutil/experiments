@@ -1,0 +1,64 @@
+ruby 3.1.4p223 (2023-03-30 revision 957bb7cb81) [x86_64-linux]
+== disasm: #<ISeq:<compiled>@<compiled>:1 (1,0)-(21,3)> (catch: FALSE)
+local table (size: 2, argc: 0 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] value1@0   [ 1] value2@1
+0000 putself                                                          (   3)[Li]
+0001 putstring                              "benchmark/ips"
+0003 opt_send_without_block                 <calldata!mid:require, argc:1, FCALL|ARGS_SIMPLE>
+0005 pop
+0006 putobject_INT2FIX_1_                                             (   5)[Li]
+0007 setlocal_WC_0                          value1@0
+0009 putnil                                                           (   6)[Li]
+0010 setlocal_WC_0                          value2@1
+0012 opt_getinlinecache                     21, <is:0>                (   8)[Li]
+0015 putobject                              true
+0017 getconstant                            :Benchmark
+0019 opt_setinlinecache                     <is:0>
+0021 send                                   <calldata!mid:ips, argc:0>, block in <compiled>
+0024 leave
+
+== disasm: #<ISeq:block in <compiled>@<compiled>:8 (8,14)-(21,3)> (catch: FALSE)
+local table (size: 1, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 1] x@0<Arg>
+0000 getlocal_WC_0                          x@0                       (   9)[LiBc]
+0002 putstring                              "value != nil"
+0004 send                                   <calldata!mid:report, argc:1>, block (2 levels) in <compiled>
+0007 pop
+0008 getlocal_WC_0                          x@0                       (  13)[Li]
+0010 putstring                              "nil != value"
+0012 send                                   <calldata!mid:report, argc:1>, block (2 levels) in <compiled>
+0015 pop
+0016 getlocal_WC_0                          x@0                       (  17)[Li]
+0018 putstring                              "!value.nil?"
+0020 send                                   <calldata!mid:report, argc:1>, block (2 levels) in <compiled>
+0023 leave                                                            (  21)[Br]
+
+== disasm: #<ISeq:block (2 levels) in <compiled>@<compiled>:9 (9,27)-(12,5)> (catch: FALSE)
+0000 getlocal                               value1@0, 2               (  10)[LiBc]
+0003 putnil
+0004 opt_neq                                <calldata!mid:==, argc:1, ARGS_SIMPLE>, <calldata!mid:!=, argc:1, ARGS_SIMPLE>[CcCr]
+0007 pop
+0008 getlocal                               value2@1, 2               (  11)[Li]
+0011 putnil
+0012 opt_neq                                <calldata!mid:==, argc:1, ARGS_SIMPLE>, <calldata!mid:!=, argc:1, ARGS_SIMPLE>[CcCr]
+0015 leave                                                            (  12)[Br]
+
+== disasm: #<ISeq:block (2 levels) in <compiled>@<compiled>:13 (13,27)-(16,5)> (catch: FALSE)
+0000 putnil                                                           (  14)[LiBc]
+0001 getlocal                               value1@0, 2
+0004 opt_neq                                <calldata!mid:==, argc:1, ARGS_SIMPLE>, <calldata!mid:!=, argc:1, ARGS_SIMPLE>[CcCr]
+0007 pop
+0008 putnil                                                           (  15)[Li]
+0009 getlocal                               value2@1, 2
+0012 opt_neq                                <calldata!mid:==, argc:1, ARGS_SIMPLE>, <calldata!mid:!=, argc:1, ARGS_SIMPLE>[CcCr]
+0015 leave                                                            (  16)[Br]
+
+== disasm: #<ISeq:block (2 levels) in <compiled>@<compiled>:17 (17,26)-(20,5)> (catch: FALSE)
+0000 getlocal                               value1@0, 2               (  18)[LiBc]
+0003 opt_nil_p                              <calldata!mid:nil?, argc:0, ARGS_SIMPLE>[CcCr]
+0005 opt_not                                <calldata!mid:!, argc:0, ARGS_SIMPLE>[CcCr]
+0007 pop
+0008 getlocal                               value2@1, 2               (  19)[Li]
+0011 opt_nil_p                              <calldata!mid:nil?, argc:0, ARGS_SIMPLE>[CcCr]
+0013 opt_not                                <calldata!mid:!, argc:0, ARGS_SIMPLE>[CcCr]
+0015 leave                                                            (  20)[Br]
