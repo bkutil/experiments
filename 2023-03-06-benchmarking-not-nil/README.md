@@ -73,5 +73,5 @@ difference probably lies in the way they are executed/implemented in the VM.
 
 ## Tools
 
-[./bench.rb](benchmark)
-[./disasm.rb](utility to dump instruction sequences)
+[benchmark](./bench.rb)
+[utility to dump instruction sequences](./disasm.rb)
