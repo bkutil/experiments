@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem "benchmark-ips", "~> 2.13"
+gem "pid_cache", require: false

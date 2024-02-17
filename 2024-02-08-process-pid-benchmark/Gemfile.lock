@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    benchmark-ips (2.13.0)
+    pid_cache (0.1.0)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  benchmark-ips (~> 2.13)
+  pid_cache
+
+BUNDLED WITH
+   2.5.4
