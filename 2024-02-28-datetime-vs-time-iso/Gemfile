@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+gem "benchmark-ips"
+
+gem "activesupport", "~> 7.1"
+
+gem "stackprof", "~> 0.2.26"
