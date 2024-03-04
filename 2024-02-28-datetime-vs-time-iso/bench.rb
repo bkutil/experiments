@@ -17,6 +17,7 @@ Benchmark.ips do |x|
   x.report("Time.now.utc.to_s - string, UTC") { Time.now.utc.to_s }
   x.report("Time.now.to_f.to_s - float + string, epoch") { Time.now.to_f.to_s }
   x.report("Time.now.to_f - float, epoch") { Time.now.to_f }
+  x.report("Process.clock_gettime - monotonic") { Process.clock_gettime(Process::CLOCK_MONOTONIC) }
 
   x.compare!
 end

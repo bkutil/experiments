@@ -13,12 +13,15 @@ My hunch is that the slow-down is due to the string
 , and taking time zones into account.
 
 ```ruby
-Time.now.to_f - float, epoch:                                  1259839.3 i/s
-Time.now.to_f.to_s - float + string, epoch:                     262387.3 i/s - 4.80x  slower
-Time.now.utc.to_s - string, UTC:                                211925.7 i/s - 5.94x  slower
-Time.now.to_s - string, localtime:                              171308.2 i/s - 7.35x  slower
-Time.now.strftime('%FT%T.%9N%:z') - activesupport equivalent:   144008.6 i/s - 8.75x  slower
-Time.now.iso8601(9) - activesupport shim:                       108559.0 i/s - 11.61x  slower
-DateTime.now.strftime('%FT%T.%9N%:z') - iso8601 equivalent:      86853.7 i/s - 14.51x  slower
-DateTime.now.iso8601(9) - baseline:                              81973.9 i/s - 15.37x  slower
+Process.clock_gettime - monotonic:                             5129510.3 i/s
+Time.now.to_f - float, epoch:                                  2190267.0 i/s - 2.34x  slower
+Time.now.to_r - rational, epoch:                               1028269.1 i/s - 4.99x  slower
+Time.now.to_r.to_s - rational + string, epoch:                  549787.2 i/s - 9.33x  slower
+Time.now.to_f.to_s - float + string, epoch:                     471081.9 i/s - 10.89x  slower
+Time.now.utc.to_s - string, UTC:                                383069.4 i/s - 13.39x  slower
+Time.now.to_s - string, localtime:                              309252.1 i/s - 16.59x  slower
+Time.now.strftime('%FT%T.%9N%:z') - activesupport equivalent:   257407.9 i/s - 19.93x  slower
+Time.now.iso8601(9) - activesupport shim:                       195736.0 i/s - 26.21x  slower
+DateTime.now.iso8601(9) - baseline:                             147530.0 i/s - 34.77x  slower
+DateTime.now.strftime('%FT%T.%9N%:z') - iso8601 equivalent:     122722.3 i/s - 41.80x  slower
 ```
