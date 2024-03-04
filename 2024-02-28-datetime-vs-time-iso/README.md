@@ -2,9 +2,6 @@
 
 It turns out that frequent calls to (Date)Time#iso8601 are quite slow.
 
-Here's a [micro-benchmark](./bench.rb) with
-`active_support/core_ext/time`, which adds `Time#iso8601`.
-
 I've added other methods into the mix, just to see how they compare,
 even though they might have a different use case.
 
@@ -13,15 +10,15 @@ My hunch is that the slow-down is due to the string
 , and taking time zones into account.
 
 ```ruby
-Process.clock_gettime - monotonic:                             5129510.3 i/s
-Time.now.to_f - float, epoch:                                  2190267.0 i/s - 2.34x  slower
-Time.now.to_r - rational, epoch:                               1028269.1 i/s - 4.99x  slower
-Time.now.to_r.to_s - rational + string, epoch:                  549787.2 i/s - 9.33x  slower
-Time.now.to_f.to_s - float + string, epoch:                     471081.9 i/s - 10.89x  slower
-Time.now.utc.to_s - string, UTC:                                383069.4 i/s - 13.39x  slower
-Time.now.to_s - string, localtime:                              309252.1 i/s - 16.59x  slower
-Time.now.strftime('%FT%T.%9N%:z') - activesupport equivalent:   257407.9 i/s - 19.93x  slower
-Time.now.iso8601(9) - activesupport shim:                       195736.0 i/s - 26.21x  slower
-DateTime.now.iso8601(9) - baseline:                             147530.0 i/s - 34.77x  slower
-DateTime.now.strftime('%FT%T.%9N%:z') - iso8601 equivalent:     122722.3 i/s - 41.80x  slower
+Process.clock_gettime - monotonic:                           4377583.9 i/s
+Time.now.to_f - float, epoch:                                2454758.5 i/s -  1.78x  slower
+Time.now.to_r - rational, epoch:                              995037.5 i/s -  4.40x  slower
+Time.now.to_r.to_s - rational + string, epoch:                497177.3 i/s -  8.80x  slower
+Time.now.to_f.to_s - float + string, epoch:                   397097.4 i/s - 11.02x  slower
+Time.now.utc.to_s - string, UTC:                              368614.8 i/s - 11.88x  slower
+Time.now.to_s - string, localtime:                            265995.5 i/s - 16.46x  slower
+Time.now.strftime('%FT%T.%9N%:z') - time iso8601 equivalent:  216731.3 i/s - 20.20x  slower
+Time.now.iso8601(9) - time:                                   171045.8 i/s - 25.59x  slower
+DateTime.now.strftime('%FT%T.%9N%:z') - iso8601 equivalent:   157344.3 i/s - 27.82x  slower
+DateTime.now.iso8601(9) - baseline:                           132501.8 i/s - 33.04x  slower
 ```
